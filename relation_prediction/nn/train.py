@@ -33,8 +33,8 @@ TEXT = data.Field(lower=True)
 RELATION = data.Field(sequential=False)
 
 train, dev, test = SQdataset.splits(TEXT, RELATION, args.data_dir)
-TEXT.build_vocab(train, dev, test)
-RELATION.build_vocab(train, dev)
+TEXT.build_vocab(train)
+RELATION.build_vocab(train)
 
 match_embedding = 0
 if os.path.isfile(args.vector_cache):

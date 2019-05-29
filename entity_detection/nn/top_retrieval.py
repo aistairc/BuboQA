@@ -35,8 +35,8 @@ TEXT = data.Field(lower=True)
 ED = data.Field()
 
 train, dev, test = SQdataset.splits(TEXT, ED, path=args.data_dir)
-TEXT.build_vocab(train, dev, test)
-ED.build_vocab(train, dev, test)
+TEXT.build_vocab(train)
+ED.build_vocab(train)
 
 train_iter = data.Iterator(train, batch_size=args.batch_size, device=args.gpu, train=True, repeat=False,
                                    sort=False, shuffle=True)

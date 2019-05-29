@@ -34,8 +34,8 @@ TEXT = data.Field(lower=True)
 ED = data.Field()
 
 train, dev, test = SQdataset.splits(TEXT, ED, args.data_dir)
-TEXT.build_vocab(train, dev, test)
-ED.build_vocab(train, dev, test)
+TEXT.build_vocab(train)
+ED.build_vocab(train)
 
 match_embedding = 0
 if os.path.isfile(args.vector_cache):
