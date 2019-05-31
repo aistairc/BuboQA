@@ -114,14 +114,15 @@ def entity_linking(data_type, predictedfile, goldfile, HITS_TOP_ENTITIES, output
         if gold_id in midList[:100]:
             top100 += 1
 
-    print(data_type)
-    print("Top1 Entity Linking Accuracy: {}".format(top1 / total))
-    print("Top3 Entity Linking Accuracy: {}".format(top3 / total))
-    print("Top5 Entity Linking Accuracy: {}".format(top5 / total))
-    print("Top10 Entity Linking Accuracy: {}".format(top10 / total))
-    print("Top20 Entity Linking Accuracy: {}".format(top20 / total))
-    print("Top50 Entity Linking Accuracy: {}".format(top50 / total))
-    print("Top100 Entity Linking Accuracy: {}".format(top100 / total))
+    if total:
+        print(data_type)
+        print("Top1 Entity Linking Accuracy: {}".format(top1 / total))
+        print("Top3 Entity Linking Accuracy: {}".format(top3 / total))
+        print("Top5 Entity Linking Accuracy: {}".format(top5 / total))
+        print("Top10 Entity Linking Accuracy: {}".format(top10 / total))
+        print("Top20 Entity Linking Accuracy: {}".format(top20 / total))
+        print("Top50 Entity Linking Accuracy: {}".format(top50 / total))
+        print("Top100 Entity Linking Accuracy: {}".format(top100 / total))
 
 
 if __name__=="__main__":

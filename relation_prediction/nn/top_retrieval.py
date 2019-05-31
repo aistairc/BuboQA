@@ -96,11 +96,12 @@ def predict(dataset_iter=test_iter, dataset=test, data_name="test"):
             exit()
 
     if args.dataset == 'RelationPrediction':
-        P = 1. * n_correct / len(dataset)
-        print("{} Precision: {:10.6f}%".format(data_name, 100. * P))
-        print("no. retrieved: {} out of {}".format(n_retrieved, len(dataset)))
-        retrieval_rate = 100. * n_retrieved / len(dataset)
-        print("{} Retrieval Rate {:10.6f}".format(data_name, retrieval_rate))
+        if dataset:
+            P = 1. * n_correct / len(dataset)
+            print("{} Precision: {:10.6f}%".format(data_name, 100. * P))
+            print("no. retrieved: {} out of {}".format(n_retrieved, len(dataset)))
+            retrieval_rate = 100. * n_retrieved / len(dataset)
+            print("{} Retrieval Rate {:10.6f}".format(data_name, retrieval_rate))
     else:
         print("Wrong dataset")
         exit()
