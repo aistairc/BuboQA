@@ -63,18 +63,21 @@ if not os.path.exists(results_path):
     os.makedirs(results_path, exist_ok=True)
 
 
-def convert(fileName, idFile, outputFile):
+def convert(fileName, origFile, outputFile):
     fin = open(fileName)
-    fid = open(idFile)
+    foin = open(origFile)
     fout = open(outputFile, "w")
 
-    for line, line_id in tqdm(zip(fin.readlines(), fid.readlines())):
+    for line, orig_line in tqdm(zip(fin.readlines(), foin.readlines())):
         query_list = []
         query_text = []
         line = line.strip().split('\t')
         sent = line[0].strip().split()
         pred = line[1].strip().split()
-        for token, label in zip(sent, pred):
+        orig_line = orig_line.strip().split('\t')
+        line_id = orig_line[0].strip()
+        words = orig_line[5].strip().split()
+        for token, label in zip(words, pred):
             if label == 'I':
                 query_text.append(token)
             if label == 'O':
@@ -131,7 +134,7 @@ def predict(dataset_iter=test_iter, dataset=test, data_name="test"):
         exit()
     results_file.flush()
     results_file.close()
-    convert(temp_file, os.path.join(args.data_dir, "lineids_{}.txt".format(data_name)), os.path.join(results_path,"query.{}".format(data_name)))
+    convert(temp_file, os.path.join(args.data_dir, "{}.txt".format(data_name)), os.path.join(results_path,"query.{}".format(data_name)))
     os.remove(temp_file)
 
 

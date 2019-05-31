@@ -68,8 +68,8 @@ def predict(dataset_iter=test_iter, dataset=test, data_name="test"):
     results_file = open(os.path.join(results_path, fname), 'w')
     n_retrieved = 0
 
-    fid = open(os.path.join(args.data_dir,"lineids_{}.txt".format(data_name)))
-    sent_id = [x.strip() for x in fid.readlines()]
+    foin = open(os.path.join(args.data_dir, "{}.txt".format(data_name)))
+    sent_id = [x.strip().split('\t')[0].strip() for x in foin.readlines()]
 
     for data_batch_idx, data_batch in enumerate(dataset_iter):
         scores = model(data_batch)
